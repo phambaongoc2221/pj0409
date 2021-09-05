@@ -6,10 +6,9 @@
 package control;
 
 import dao.DAO;
-import entity.Category;
-import entity.Product;
+import entity.Food;
+
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,13 +23,10 @@ public class HomeControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         DAO dao = new DAO();
-        List<Product> list = dao.getAllProduct();
-        List<Category> listC = dao.getAllCategory();
-        Product last = dao.getLast();
+        List<Food> list = dao.getAllFood();
 
-        request.setAttribute("listP", list);
-        request.setAttribute("listCC", listC);
-        request.setAttribute("p", last);
+        request.setAttribute("list", list);
+
         request.getRequestDispatcher("Home.jsp").forward(request, response);
     }
 
